@@ -29,9 +29,15 @@ class UserController extends Controller
             ], 422);
         }
 
+        $email = $request->input('email');
+        $user = User::where('email', $email)->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'Account is not found.'], 404);
+        }
+
         if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
             $token = "lfiExUFNJtdujwhpblRTeRrZWfvfFbTJ";
-
             return response()->json(['token' => $token]);
         } else {
             return response()->json(['message' => 'Invalid credentials'], 401);

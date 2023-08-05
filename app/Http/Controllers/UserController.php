@@ -40,7 +40,7 @@ class UserController extends Controller
             $token = "lfiExUFNJtdujwhpblRTeRrZWfvfFbTJ";
             return response()->json(['token' => $token]);
         } else {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+            return response()->json(['message' => 'Invalid credentials.'], 401);
         }
     }
 }

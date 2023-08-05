@@ -170,4 +170,21 @@ class FoodTest extends TestCase
             ]
         ]);
     }
+
+    public function testSuccessDeleteFood():void
+    {
+        $postData = [
+            'name' => 'Rendang',
+            'price' => 23000,
+            'description' => 'Lorem ipsum dolor amet.'
+        ];
+        $headers = ['Authorization' => "BearerAuth"];
+        $this->post('/api/foods', $postData, $headers);
+
+        $this->delete('/api/foods/1',$headers);
+        $response = $this->get('/api/foods',$headers);
+        $response->assertJson([
+            'data' => array()
+        ]);
+    }
 }

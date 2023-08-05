@@ -28,15 +28,11 @@ class UserController extends Controller
                 'errors' => $errors,
             ], 422);
         }
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
-            $user = Auth::user();
-            $token = "dsajds";
 
-            return response()->json(['message' => 'Login successful', 'token' => $token]);
+        if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')])) {
+            $token = "lfiExUFNJtdujwhpblRTeRrZWfvfFbTJ";
+
+            return response()->json(['token' => $token]);
         } else {
             return response()->json(['message' => 'Invalid credentials'], 401);
         }

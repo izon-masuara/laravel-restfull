@@ -14,6 +14,6 @@ Route::middleware('checkAuth')->group(function () {
 });
 
 Route::middleware('checkServer')->get('/', function () {
-    return response()->json(['message' => 'Server is running.']);
+    return response()->json(['message' => 'Server is running.'],200);
 });
 

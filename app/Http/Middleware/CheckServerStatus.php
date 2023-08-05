@@ -15,10 +15,10 @@ class CheckServerStatus
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // if ($request->header('SERVER_DOWN')) {
-        //     return response()->json(['message' => 'Server is down.'], 502);
-        // }
-
+        
+        if ($request->header('SERVER_DOWN')) {
+            return response()->json(['message' => 'Server is down.'], 502);
+        }
         return $next($request);
     }
 }

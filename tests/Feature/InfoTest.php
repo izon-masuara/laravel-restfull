@@ -16,7 +16,7 @@ class InfoTest extends TestCase
     public function testServerIsDown()
     {
         $response = $this->get('/api', ['SERVER_DOWN' => true]);
-        // $response->assertStatus(502);
+        $response->assertStatus(502);
         $response->assertJson(['message' => 'Server is down.']);
     }
 }

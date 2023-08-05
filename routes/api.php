@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\FoodController;
 use App\Http\Middleware\CheckServerStatusMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -17,3 +18,6 @@ Route::middleware('checkServer')->get('/', function () {
     return response()->json(['message' => 'Server is running.'],200);
 });
 
+Route::middleware('checkAuth')->group(function () {
+    Route::get('users/authenticate', [Controller::class, 'index']);
+});
